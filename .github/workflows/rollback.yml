@@ -1,0 +1,33 @@
+name: Emergency Rollback
+
+on: 
+  workflow_dispatch:
+    inputs:
+      pr_id:
+        description: 'Pull Request ID to Revert'
+        required: true
+      reason:
+        description: 'Reason for Rollback'
+        required: true
+
+jobs:
+  revert_deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛑 Acknowledge Incident
+        run: |
+          echo "🚨 CRITICAL INCIDENT REPORTED"
+          echo "Initiating Rollback sequence for PR #${{ github.event.inputs.pr_id }}"
+          echo "Reason: ${{ github.event.inputs.reason }}"
+
+      - name: 🛠️ Simulating Revert Process
+        run: |
+          echo "Checking out main branch..."
+          sleep 2
+          echo "Reverting commit associated with PR #${{ github.event.inputs.pr_id }}..."
+          sleep 2
+          echo "Deploying stable version (v1.0.4)..."
+          sleep 2
+
+      - name: ✅ Success
+        run: echo "System restored to stable state."
