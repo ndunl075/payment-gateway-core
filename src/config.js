@@ -1,3 +1,5 @@
+// breaking change simulation
+
 module.exports = {
   service_name: 'Stripe_Connector_v2',
   currency: 'USD',
